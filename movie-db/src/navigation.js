@@ -6,7 +6,7 @@ let page = 1,
 document.addEventListener('DOMContentLoaded', () => {
   !localStorage.getItem('idiom') && detectLanguaje();
   router();
-});
+}, { passive: true });
 
 document.addEventListener('click', (e) => {
   if (!e.target.matches('.header-idiom > h2')) return;
@@ -56,9 +56,22 @@ function router() {
   document.documentElement.scrollTop = 0;
 
   if (infiniteScroll) {
-    window.addEventListener('scroll', infiniteScroll);
+    window.addEventListener('scroll', (e) => {
+      infiniteScroll();
+      console.log("si");
+    });
   }
+
 }
+
+
+// window.addEventListener('touchmove', () => {
+//   console.log('Touchmove event detected');
+// }, { passive: true });
+
+// window.addEventListener('touchend', () => {
+//   console.log('Touchend event detected');
+// }, { passive: true });
 
 function homePage() {
   headerIdiom.classList.remove('inactive');
@@ -153,7 +166,6 @@ function searchPage() {
 }
 
 function trendsPage() {
-  console.log('TRENDS!!');
   headerIdiom.classList.add('inactive');
   headerSection.classList.remove('header-container--long');
   headerSection.style.background = '';

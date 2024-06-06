@@ -16,8 +16,8 @@ export function infiniteScroll () {
   w.addEventListener("scroll", async (e) => {
     let { scrollHeight, scrollTop, clientHeight } = d.documentElement,
                                          { hash } = location;
-
-    if(scrollTop + clientHeight >= scrollHeight) {
+console.log(scrollTop, clientHeight, scrollHeight);
+    if(scrollTop + clientHeight >= scrollHeight - 15) {
       wp_api.page++;
 
       if(!hash || hash === "#/") {

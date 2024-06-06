@@ -1,25 +1,25 @@
 //?axios
 
 let api = axios.create({
-  baseURL: 'https://api.themoviedb.org/3/',
+  baseURL: "https://api.themoviedb.org/3/",
   headers: {
-    accept: 'application/json',
+    accept: "application/json",
     Authorization: API_KEY,
   },
   params: {
-    language: localStorage.getItem('idiom') || 'en-US',
+    language: localStorage.getItem("idiom") || "en-US",
   },
 });
 
 function updateAxiosInstance() {
   api = axios.create({
-    baseURL: 'https://api.themoviedb.org/3/',
+    baseURL: "https://api.themoviedb.org/3/",
     headers: {
-      accept: 'aplication/json',
+      accept: "aplication/json",
       Authorization: API_KEY,
     },
     params: {
-      language: localStorage.getItem('idiom'),
+      language: localStorage.getItem("idiom"),
     },
   });
 }
@@ -27,7 +27,7 @@ function updateAxiosInstance() {
 //?helpers
 
 function likedMoviesList() {
-  const item = JSON.parse(localStorage.getItem('liked-movies'));
+  const item = JSON.parse(localStorage.getItem("liked-movies"));
   let obj;
 
   if (!item) {
@@ -45,11 +45,11 @@ function likedMovie(movie) {
   } else {
     likedMovies[movie.id] = undefined;
   }
-  localStorage.setItem('liked-movies', JSON.stringify(likedMovies));
+  localStorage.setItem("liked-movies", JSON.stringify(likedMovies));
 }
 
 function renderLikedMovies() {
-       const likedMovies = likedMoviesList();
+  const likedMovies = likedMoviesList();
   const likedMoviesArray = Object.values(likedMovies);
 
   createMovies(likedMoviesArray, likedMoviesListArticle, {
@@ -60,8 +60,8 @@ function renderLikedMovies() {
 const lazyLoader = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const url = entry.target.getAttribute('data-img');
-      entry.target.setAttribute('src', url);
+      const url = entry.target.getAttribute("data-img");
+      entry.target.setAttribute("src", url);
     }
   });
 });
@@ -71,42 +71,40 @@ function createMovies(
   container,
   { lazyLoad = false, clean = true } = {}
 ) {
-  if (clean) container.innerHTML = '';
+  if (clean) container.innerHTML = "";
 
   movies.forEach((movie) => {
-      const perspectiveDiv = document.createElement('div'),
-            movieContainer = document.createElement('div'), 
-                  movieImg = document.createElement('img'),
-                  movieBtn = document.createElement('button');
+    const perspectiveDiv = document.createElement("div"),
+      movieContainer = document.createElement("div"),
+      movieImg = document.createElement("img"),
+      movieBtn = document.createElement("button");
 
-    perspectiveDiv.classList.add('perspective-container');
-    movieContainer.classList.add('movie-container');
-          movieImg.classList.add('movie-img');
-          movieBtn.classList.add('movie-btn');
+    perspectiveDiv.classList.add("perspective-container");
+    movieContainer.classList.add("movie-container");
+    movieImg.classList.add("movie-img");
+    movieBtn.classList.add("movie-btn");
 
-    movieImg.setAttribute('alt', movie.title);
+    movieImg.setAttribute("alt", movie.title);
     movieImg.setAttribute(
-      lazyLoad 
-      ? 'data-img' 
-      : 'src',
-      'https://image.tmdb.org/t/p/w300' + movie.poster_path
+      lazyLoad ? "data-img" : "src",
+      "https://image.tmdb.org/t/p/w300" + movie.poster_path
     );
 
-    movieImg.addEventListener('click', () => {
-      location.hash = '#movie=' + movie.id;
+    movieImg.addEventListener("click", () => {
+      location.hash = "#movie=" + movie.id;
     });
 
-    movieImg.addEventListener('error', () => {
-      movieImg.setAttribute('src', 'src/assets/not-found.jpg');
+    movieImg.addEventListener("error", () => {
+      movieImg.setAttribute("src", "src/assets/not-found.jpg");
     });
 
-    movieBtn.addEventListener('click', () => {
-      movieBtn.classList.toggle('movie-btn--liked');
+    movieBtn.addEventListener("click", () => {
+      movieBtn.classList.toggle("movie-btn--liked");
       likedMovie(movie);
       renderLikedMovies();
     });
 
-    likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
+    likedMoviesList()[movie.id] && movieBtn.classList.add("movie-btn--liked");
 
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
@@ -115,21 +113,21 @@ function createMovies(
     perspectiveDiv.appendChild(movieContainer);
     movieContainer.appendChild(movieImg);
     movieContainer.appendChild(movieBtn);
-         container.appendChild(perspectiveDiv);
+    container.appendChild(perspectiveDiv);
   });
 }
 
 function createCategories(categories, container) {
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   categories.forEach((category) => {
-    const categoryContainer = document.createElement('div');
-    categoryContainer.classList.add('category-container');
+    const categoryContainer = document.createElement("div");
+    categoryContainer.classList.add("category-container");
 
-    const categoryTitle = document.createElement('h3');
-    categoryTitle.classList.add('category-title');
-    categoryTitle.setAttribute('id', 'id' + category.id);
-    categoryTitle.addEventListener('click', () => {
+    const categoryTitle = document.createElement("h3");
+    categoryTitle.classList.add("category-title");
+    categoryTitle.setAttribute("id", "id" + category.id);
+    categoryTitle.addEventListener("click", () => {
       location.hash = `#category=${category.id}-${category.name}`;
     });
 
@@ -142,7 +140,7 @@ function createCategories(categories, container) {
 
 //?Retrieve API Data
 async function getTrendingMoviesPreview() {
-  const { data } = await api('trending/movie/day');
+  const { data } = await api("trending/movie/day");
   const movies = data.results;
 
   createMovies(movies, trendingMoviesPreviewList, {
@@ -152,14 +150,14 @@ async function getTrendingMoviesPreview() {
 }
 
 async function getCategegoriesPreview() {
-  const { data } = await api('genre/movie/list');
+  const { data } = await api("genre/movie/list");
   const categories = data.genres;
 
   createCategories(categories, categoriesPreviewList);
 }
 
 async function getMoviesByCategory(id) {
-  const { data } = await api('discover/movie', {
+  const { data } = await api("discover/movie", {
     params: {
       with_genres: id,
     },
@@ -170,14 +168,15 @@ async function getMoviesByCategory(id) {
 }
 
 function getPaginatedMoviesByCategory(id) {
+  console.log("si");
   return async function () {
     const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-    const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 1,
-           pageIsNotMax = page < maxPage;
-
+    const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 15,
+      pageIsNotMax = page < maxPage;
+    console.log(scrollsBottom, pageIsNotMax);
     if (scrollsBottom && pageIsNotMax) {
       page++;
-      const { data } = await api('discover/movie', {
+      const { data } = await api("discover/movie", {
         params: {
           with_genres: id,
           page,
@@ -193,7 +192,7 @@ function getPaginatedMoviesByCategory(id) {
 }
 
 async function getMoviesBySearch(query) {
-  const { data } = await api('search/movie', {
+  const { data } = await api("search/movie", {
     params: {
       query,
     },
@@ -207,12 +206,12 @@ function getPaginatedMoviesBySearch(query) {
   return async function () {
     const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
 
-    const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 1,
-           pageIsNotMax = page < maxPage;
+    const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 15,
+      pageIsNotMax = page < maxPage;
 
     if (scrollsBottom && pageIsNotMax) {
       page++;
-      const { data } = await api('search/movie', {
+      const { data } = await api("search/movie", {
         params: {
           query,
           page,
@@ -228,8 +227,8 @@ function getPaginatedMoviesBySearch(query) {
 }
 
 async function getTrendingMovies() {
-  const { data } = await api('trending/movie/day'),
-          movies = data.results;
+  const { data } = await api("trending/movie/day"),
+    movies = data.results;
 
   maxPage = data.total_pages;
   createMovies(movies, genericSection, { lazyLoad: true, clean: true });
@@ -238,12 +237,12 @@ async function getTrendingMovies() {
 async function getPaginatedTrendingMovies() {
   const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
 
-  const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 1,
-         pageIsNotMax = page < maxPage;
+  const scrollsBottom = scrollTop + clientHeight >= scrollHeight - 15,
+    pageIsNotMax = page < maxPage;
 
   if (scrollsBottom && pageIsNotMax) {
     page++;
-    const { data } = await api('trending/movie/day', {
+    const { data } = await api("trending/movie/day", {
       params: {
         page,
       },
@@ -257,19 +256,19 @@ async function getPaginatedTrendingMovies() {
 }
 
 async function getMovieById(id) {
-  const { data: movie } = await api('movie/' + id);
+  const { data: movie } = await api("movie/" + id);
   const res = await api(
     `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`
   );
   let trailerId;
-  if(res.data.results.length === 0) {
-    trailerId = 'e';
+  if (res.data.results.length === 0) {
+    trailerId = "e";
   } else {
-    trailerId = res.data.results[0].key
+    trailerId = res.data.results[0].key;
   }
 
-  const movieImgUrl = 'https://image.tmdb.org/t/p/original' + movie.poster_path;
-  headerSection.style['background-image'] = `
+  const movieImgUrl = "https://image.tmdb.org/t/p/original" + movie.poster_path;
+  headerSection.style["background-image"] = `
     linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.35) 19.27%,
@@ -278,9 +277,9 @@ async function getMovieById(id) {
     url(${movieImgUrl})
   `;
 
-        movieDetailTitle.textContent = movie.title;
+  movieDetailTitle.textContent = movie.title;
   movieDetailDescription.textContent = movie.overview;
-        movieDetailScore.textContent = movie.vote_average.toFixed(1);
+  movieDetailScore.textContent = movie.vote_average.toFixed(1);
   movieDetailsBtn.innerHTML = `
     <a class='btn' href='https://www.youtube.com/watch?v=${trailerId}' target='_blank' rel='noopener'>
       <div></div>
@@ -304,24 +303,23 @@ async function getRelatedMoviesId(id) {
 }
 
 function showEng() {
-  idiom = 'en-US';
-  localStorage.setItem('idiom', idiom);
-  searchFormInput.placeholder = 'Search...';
+  idiom = "en-US";
+  localStorage.setItem("idiom", idiom);
+  searchFormInput.placeholder = "Search...";
   trendingBtn.innerHTML = `
    <div></div>
    <div></div>
    <div></div>
    <div></div>
    See more
-   `
-  ;
-  headerCategoryTitle.textContent = 'Trending';
+   `;
+  headerCategoryTitle.textContent = "Trending";
   espItems.forEach((item) => {
-    item.classList.add('inactive');
+    item.classList.add("inactive");
   });
 
   engItems.forEach((item) => {
-    item.classList.remove('inactive');
+    item.classList.remove("inactive");
   });
 
   updateAxiosInstance();
@@ -331,9 +329,9 @@ function showEng() {
 }
 
 function showEsp() {
-  idiom = 'es-ES';
-  localStorage.setItem('idiom', idiom);
-  searchFormInput.placeholder = 'Buscar...';
+  idiom = "es-ES";
+  localStorage.setItem("idiom", idiom);
+  searchFormInput.placeholder = "Buscar...";
   trendingBtn.innerHTML = `
    <div></div>
    <div></div>
@@ -341,9 +339,9 @@ function showEsp() {
    <div></div>
    Ver más
   `;
-  headerCategoryTitle.textContent = 'Tendencias';
-  engItems.forEach((item) => item.classList.add('inactive'));
-  espItems.forEach((item) => item.classList.remove('inactive'));
+  headerCategoryTitle.textContent = "Tendencias";
+  engItems.forEach((item) => item.classList.add("inactive"));
+  espItems.forEach((item) => item.classList.remove("inactive"));
 
   updateAxiosInstance();
   getTrendingMoviesPreview();
@@ -352,13 +350,13 @@ function showEsp() {
 }
 
 function detectLanguaje() {
-  if (confirm('¿Do you like to detect your language?')) {
-    idiom = navigator.language.split('-')[0];
-    if (idiom === 'es') {
+  if (confirm("¿Do you like to detect your language?")) {
+    idiom = navigator.language.split("-")[0];
+    if (idiom === "es") {
       showEsp();
     } else {
       showEng();
-    } 
+    }
   } else {
     showEng();
   }
