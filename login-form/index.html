@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 16px;
+      background-color: #888;
+      font-family: sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("../assets/fondo2.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      width: 350px;
+      height: 250px;
+    }
+    
+    .container span {
+      position: absolute;
+      left: 0;
+      width: 30px;
+      height: 8px;
+      background-color: rgb(29, 54, 93);
+      border-radius: 40px;
+      transform-origin: 175px;
+      transform: rotate(calc((360deg / 60) * var(--i))) scale(2.1);
+      animation: anim 3s linear infinite;
+      animation-delay: calc((3s / 60) * var(--i));
+    }
+
+    @keyframes anim {
+      0% {
+        background-color: #0ef;
+      }
+
+      25% {
+        background-color: rgb(29, 54, 93);
+      }
+    }
+
+    .contact-form {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      height: 400px;
+      padding: .5rem 3.5rem;
+      background-image: linear-gradient(135deg, rgba(255, 255, 255, .2), transparent);
+      backdrop-filter: blur(10px);
+      border-radius: .5rem;
+      box-shadow: 0 0 20px rgba(4, 95, 116, 0.388);
+    }
+
+    .contact-form legend {
+      font-size: 2rem;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .contact-form .input-box {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-form input {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 40px;
+      background-color: transparent;
+      outline: none;
+      border: 2px solid rgb(29, 54, 93);
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .contact-form label {
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      transition: .3s ease-out;
+    }
+
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+      top: -.65rem;
+      color: #0ef;
+      font-size: .8rem;
+      backdrop-filter: blur(2px); 
+    }
+
+    .input-box input:focus,
+    .input-box input:valid {
+      border: 2px solid #0ef;
+    }
+
+    .contact-form a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .contact-form a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form .forgot {
+      font-size: .9rem;
+      margin-top: -.6rem;
+      margin-bottom: .6rem;
+    }
+
+    .contact-form .btn {
+      /* width: 150px; */
+      font-size: 1rem;
+      font-weight: bold;
+      color: #000;
+      background-color: transparent;
+      padding: 1rem 0;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      margin: 2rem 0;
+      position: relative;
+      letter-spacing: 4px;
+      color: #0ef;
+      overflow: hidden;
+      transition: .3s ease-out;
+      text-transform: uppercase;
+    }
+
+    .contact-form .btn:hover {
+      background-color: #0ef;
+      color: #fff;
+      box-shadow: 0 0 5px #0ef,
+                  0 0 25px #0ef,
+                  0 0 50px #0ef,
+                  0 0 75px #0ef,
+                  0 0 100px #0ef;
+    }
+
+    .btn div {
+      position: absolute;
+    }
+
+    .btn div:nth-child(1) {
+      width: 100%;
+      height: 3px;
+      background-image: linear-gradient(90deg, transparent, #0ef);
+      top: 0;
+      left: -100%;
+      animation: btn-anim1 1s linear infinite;
+    }
+
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+
+    .btn div:nth-child(2) {
+      width: 3px;
+      height: 100%;
+      top: -100%;
+      right: 0;
+      background-image: linear-gradient(180deg, transparent, #0ef);
+      animation: btn-anim2 1s linear .25s infinite;
+    }
+
+    @keyframes btn-anim2 {
+      0% {
+        top: -100%;
+      }
+
+      50%,
+      100% {
+        top: 100%;
+      }
+    }
+
+    .btn div:nth-child(3) {
+      background-image: linear-gradient(270deg, transparent, #0ef);
+      width: 100%;
+      height: 3px;
+      right: -100%;
+      bottom: 0;
+      animation: btn-anim3 1s linear .5s infinite;
+    }
+
+    @keyframes btn-anim3 {
+      0% {
+        right: -100%;
+      }
+      50%,
+      100% {
+        right: 100%;
+      }
+    }
+
+    .btn div:nth-child(4) {
+      width: 3px;
+      height: 100%;
+      background-image: linear-gradient(360deg, transparent, #0ef);
+      left: 0;
+      bottom: -100%;
+      animation: btn-anim4 1s linear .75s infinite;
+    }
+
+    @keyframes btn-anim4 {
+      0% {
+        bottom: -100%;
+      }
+
+      50%,
+      100% {
+        bottom: 100%;
+      }
+    }
+
+    .contact-form .btn:hover {
+      cursor: pointer;
+    }
+
+    .contact-form .signup a{
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form class="contact-form">
+      <legend>Login</legend>
+      <div class="input-box">
+        <input type="email" required>
+        <label for="">Email</label>
+      </div>
+
+      <div class="input-box">
+        <input type="password" required>
+        <label for="">Password</label>
+      </div>
+
+      <div class="forgot">
+        <a href="">Forgot your password?</a>
+      </div>
+
+      <button class="btn">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        Login
+      </button>
+
+      <div class="signup">
+        <a href="">Singup</a>
+      </div>
+    </form>
+
+    <span style="--i:0;"></span>
+    <span style="--i:1;"></span>
+    <span style="--i:2;"></span>
+    <span style="--i:3;"></span>
+    <span style="--i:4;"></span>
+    <span style="--i:5;"></span>
+    <span style="--i:6;"></span>
+    <span style="--i:7;"></span>
+    <span style="--i:8;"></span>
+    <span style="--i:9;"></span>
+    <span style="--i:10;"></span>
+    <span style="--i:11;"></span>
+    <span style="--i:12;"></span>
+    <span style="--i:13;"></span>
+    <span style="--i:14;"></span>
+    <span style="--i:15;"></span>
+    <span style="--i:16;"></span>
+    <span style="--i:17;"></span>
+    <span style="--i:18;"></span>
+    <span style="--i:19;"></span>
+    <span style="--i:20;"></span>
+    <span style="--i:21;"></span>
+    <span style="--i:22;"></span>
+    <span style="--i:23;"></span>
+    <span style="--i:24;"></span>
+    <span style="--i:25;"></span>
+    <span style="--i:26;"></span>
+    <span style="--i:27;"></span>
+    <span style="--i:28;"></span>
+    <span style="--i:29;"></span>
+    <span style="--i:30;"></span>
+    <span style="--i:31;"></span>
+    <span style="--i:32;"></span>
+    <span style="--i:33;"></span>
+    <span style="--i:34;"></span>
+    <span style="--i:35;"></span>
+    <span style="--i:36;"></span>
+    <span style="--i:37;"></span>
+    <span style="--i:38;"></span>
+    <span style="--i:39;"></span>
+    <span style="--i:40;"></span>
+    <span style="--i:41;"></span>
+    <span style="--i:42;"></span>
+    <span style="--i:43;"></span>
+    <span style="--i:44;"></span>
+    <span style="--i:45;"></span>
+    <span style="--i:46;"></span>
+    <span style="--i:47;"></span>
+    <span style="--i:48;"></span>
+    <span style="--i:49;"></span>
+    <span style="--i:50;"></span>
+    <span style="--i:51;"></span>
+    <span style="--i:52;"></span>
+    <span style="--i:53;"></span>
+    <span style="--i:54;"></span>
+    <span style="--i:55;"></span>
+    <span style="--i:56;"></span>
+    <span style="--i:57;"></span>
+    <span style="--i:58;"></span>
+    <span style="--i:59;"></span>
+    
+  </div>
+</body>
+</html>

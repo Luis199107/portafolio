@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-image: url(../assets/fondo.jpg);
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .stage-perspective {
+      width: 600px;
+      height: 600px;
+      perspective: 1000px;
+      display: flex;
+      align-items: center;
+    }
+
+    .cube {
+      /* border: thin solid yellow;
+      background-color: #fff; */
+      width: 150px;
+      height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      transform: rotateX(-30deg) rotateY(40deg);
+      transform-style: preserve-3d;
+      transition: transform 10s;
+    }
+
+    .cube:hover {
+      transform: rotateX(-255deg) rotateY(-100deg);
+    }
+
+    .cube span {
+      position: absolute;
+      display: block;
+      border: thin solid blue;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cube span:nth-child(1) {
+      background-color: rgba(255, 255, 0, 0.708);
+      transform: translateZ(75px);
+    }
+
+    .cube span:nth-child(2) {
+      background-color: rgba(0, 128, 0, 0.737);
+      transform: rotateY(180deg) translateZ(75px);
+    }
+
+    .cube span:nth-child(3) {
+      background-color: rgba(102, 51, 153, 0.749);
+      transform: rotateY(-90deg) translateZ(75px);
+    }
+
+    .cube span:nth-child(4) {
+      background-color: rgba(0, 255, 255, 0.765);
+      transform: rotateY(90deg) translateZ(75px);
+    }
+
+    .cube span:nth-child(5) {
+      background-color: rgba(255, 0, 0, 0.725);
+      transform: rotateX(-90deg) translateZ(75px);
+    }
+
+    .cube span:nth-child(6) {
+      background-color: rgba(255, 127, 80, 0.72);
+      transform: rotateX(90deg) translateZ(75px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stage-perspective">
+    <div class="cube">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</body>
+
+</html>

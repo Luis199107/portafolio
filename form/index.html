@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <form class="contact-form">
+    <legend>Contactame</legend>
+    <div class="input-box">
+      <div class="input-field field">
+        <input class="item" id="name" type="text" placeholder="Nombre" autocomplete="off">
+        <div class="error-txt">Nombre vacío</div>
+      </div>
+      <div class="input-field field">
+        <input class="item" id="email" type="text" placeholder="Email" autocomplete="off">
+        <div class="error-txt">Email vacío</div>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <div class="input-field field">
+        <input class="item" id="phone" type="text" placeholder="Celular" autocomplete="off">
+        <div class="error-txt">Celular vacío</div>
+      </div>
+      <div class="input-field field">
+        <input class="item" id="subject" type="text" placeholder="Asunto" autocomplete="off">
+        <div class="error-txt">Asunto vacío</div>
+      </div>
+    </div>
+
+    <div class="input-textarea field">
+      <textarea class="item" id="comments" cols="30" rows="10" placeholder="Comentarios" autocomplete="off"></textarea>
+      <div class="error-txt">Comentarios vacío</div>
+    </div>
+
+    <div class="loader-container">
+      <div class="loader none">
+        <h3>Loading</h3>
+        <span class="spinner"></span>
+        <div class="point" style="--i:0;"></div>
+        <div class="point" style="--i:1;"></div>
+        <div class="point" style="--i:2;"></div>
+      </div>
+    </div>
+    <button type="submit">Enviar Formulario</button>
+  </form>
+
+  <div class="response">
+    <h2>respuesta</h2>
+  </div>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

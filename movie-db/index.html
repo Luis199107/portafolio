@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="./src/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/app.css" />
+  <title>API themoviedb</title>
+</head>
+<body>
+  <header id="header" class="header-container">
+    <div class="header-containerInner">
+      <span class="header-arrow inactive">&lt;</span>
+      <h1 class="header-title">
+        <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">API The Movie DB</a>
+      </h1>
+      <h2 class="header-title header-title--categoryView inactive">Tendencias</h2>
+      <article class="header-idiom">
+        <h2 class="esp">Idioma</h2>
+        <h2 class="eng inactive">Languaje</h2>
+        <aside class="countries inactive">
+          <span class="esp-btn"><img width="20" height="20" src="https://img.icons8.com/emoji/48/ecuador-emoji.png" alt="ecuador-emoji"/><small>Esp</small></span>
+          <span class="eng-btn"><img width="20" height="20" src="https://img.icons8.com/emoji/48/us-outlying-islands-emoji.png" alt="us-outlying-islands-emoji"/><small>Eng</small></span>
+        </aside>
+      </article>
+    </div>
+    <form id="searchForm" class="header-searchForm">
+      <input type="text" placeholder="Buscar..." required/>
+      <button id="searchBtn">🔍</button>
+    </form>
+  </header>
+
+  <section id="trendingPreview" class="trendingPreview-container">
+    <div class="trendingPreview-header">
+      <h2 class="trendingPreview-title esp">Tendencias</h2>
+      <h2 class="trendingPreview-title eng inactive">Trending</h2>
+      <button class="trendingPreview-btn btn">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        Ver más
+      </button>
+    </div>
+
+    <article class="trendingPreview-movieList">
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading">
+      </div>
+    </article>
+  </section>
+
+  <section id="categoriesPreview" class="categoriesPreview-container">
+    <h2 class="categoriesPreview-title esp">Categorías</h2>
+    <h2 class="categoriesPreview-title eng inactive">Categories</h2>
+
+    <article class="categoriesPreview-list">
+      <div class="category-container category-container--loading"></div>
+      <div class="category-container category-container--loading"></div>
+      <div class="category-container category-container--loading">
+      </div>
+    </article>
+  </section>
+
+  <section id="genericList" class="genericList-container inactive">
+    <div class="movie-container movie-container--loading"></div>
+    <div class="movie-container movie-container--loading"></div>
+    <div class="movie-container movie-container--loading">
+    </div>
+  </section>
+
+  <section id="liked" class="liked-container">
+    <div class="liked-header">
+      <h2 class="liked-title esp">Películas que me gustan</h2>
+      <h2 class="liked-title eng inactive">Liked movies</h2>
+    </div>
+
+    <article class="liked-movieList">
+    </article>
+  </section>
+
+  <section id="movieDetail" class="movieDetail-container inactive">
+    <h2 class="movieDetail-title">Titulo</h2>
+    <span class="movieDetail-score">7.6</span>
+    <p class="movieDetail-description">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, voluptatibus! Deserunt, ea ullam! Obcaecati dolores alias magnam quasi blanditiis facere odit placeat enim quibusdam hic sint amet, ea vitae recusandae!
+    </p>
+      <div class="movieDetails-btn"></div>
+    <article class="categories-list">
+      <div class="category-container category-container--loading"></div>
+      <div class="category-container category-container--loading"></div>
+      <div class="category-container category-container--loading">
+      </div>
+    </article>
+
+    <article class="relatedMovies-container">
+      <h2 class="relatedMovies-title">Películas similares</h2>
+
+      <div class="relatedMovies-scrollContainer">
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading">
+        </div>
+      </div>
+    </article>
+  </section>
+  
+  <footer class="esp">Sitio diseñado por Luis Jacho</footer>
+  <footer class="eng inactive">Site designed by Luis Jacho</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./src/api_key.js"></script>
+  <script src="./src/nodes.js"></script>
+  <script src="./src/navigation.js"></script>
+  <script src="./src/main.js"></script>
+</body>
+</html>
